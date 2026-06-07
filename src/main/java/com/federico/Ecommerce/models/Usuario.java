@@ -8,22 +8,37 @@ public class Usuario {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id_usuario;
+
+    @Column(name = "nombre" , nullable = true  )
     private String nombre;
+
+    @Column(name = "apellido" , nullable = true )
     private String apellido;
+
+    @Column(name =  "email", nullable = true  , unique = true)
     private String email;
-    private String contraseña;
+
+    @Column(name = "password" , nullable = true )
+    private String password;
+
+    @Column(name = "rol" , nullable = true )
     private String rol;
-    private LocalDateTime fecha_creacion;
+
+    @Column(name = "fechacreacion" , nullable = true )
+    private LocalDateTime fechacreacion;
+
+
 
     public Usuario(){}
 
-    public Usuario(Long id_usuario, String nombre, String apellido, String email, String contraseña, String rol, LocalDateTime fecha_creacion) {
+    public Usuario(Long id_usuario, String nombre, String apellido, String email, String password, String rol, LocalDateTime fechacreacion) {
         this.id_usuario = id_usuario;
+        this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
-        this.contraseña = contraseña;
+        this.password = password;
         this.rol = rol;
-        this.fecha_creacion = fecha_creacion;
+        this.fechacreacion = fechacreacion;
     }
 
     public Long getId() {
@@ -58,12 +73,12 @@ public class Usuario {
         this.email = email;
     }
 
-    public String getContraseña() {
-        return contraseña;
+    public String getPassword() {
+        return password;
     }
 
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getRol() {
@@ -74,12 +89,12 @@ public class Usuario {
         this.rol = rol;
     }
 
-    public LocalDateTime getFecha_creacion() {
-        return fecha_creacion;
+    public LocalDateTime getFechacreacion() {
+        return fechacreacion;
     }
 
-    public void setFecha_creacion(LocalDateTime fecha_creacion) {
-        this.fecha_creacion = fecha_creacion;
+    public void setFechacreacion(LocalDateTime fechacreacion) {
+        this.fechacreacion = fechacreacion;
     }
 
 
@@ -90,9 +105,9 @@ public class Usuario {
                 ", nombre='" + nombre + '\'' +
                 ", apellido='" + apellido + '\'' +
                 ", email='" + email + '\'' +
-                ", contraseña='" + contraseña + '\'' +
+                ", contraseña='" + password + '\'' +
                 ", rol='" + rol + '\'' +
-                ", fecha_creacion=" + fecha_creacion +
+                ", fecha_creacion=" + fechacreacion +
                 '}';
     }
 }
