@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 public class Usuario {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Long id_usuario;
+    private Integer id_usuario;
 
     @Column(name = "nombre" , nullable = true  )
     private String nombre;
@@ -31,7 +31,7 @@ public class Usuario {
 
     public Usuario(){}
 
-    public Usuario(Long id_usuario, String nombre, String apellido, String email, String password, String rol, LocalDateTime fechacreacion) {
+    public Usuario(Integer id_usuario, String nombre, String apellido, String email, String password, String rol, LocalDateTime fechacreacion) {
         this.id_usuario = id_usuario;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -41,11 +41,11 @@ public class Usuario {
         this.fechacreacion = fechacreacion;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id_usuario;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id_usuario = id;
     }
 
