@@ -1,52 +1,56 @@
 package com.federico.Ecommerce.models;
-import jakarta.persistence.*;
 
+import jakarta.persistence.*;
 import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "usuario")
 public class Usuario {
-    @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Integer id_usuario;
 
-    @Column(name = "nombre" , nullable = true  )
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_usuario")
+    private Integer idUsuario;
+
+    @Column(name = "nombre", nullable = false)
     private String nombre;
 
-    @Column(name = "apellido" , nullable = true )
+    @Column(name = "apellido", nullable = false)
     private String apellido;
 
-    @Column(name =  "email", nullable = true  , unique = true)
+    @Column(name = "email", nullable = false, unique = true)
     private String email;
 
-    @Column(name = "password" , nullable = true )
+    @Column(name = "password", nullable = false)
     private String password;
 
-    @Column(name = "rol" , nullable = true )
+    @Column(name = "rol", nullable = false)
     private String rol;
 
-    @Column(name = "fechacreacion" , nullable = true )
-    private LocalDateTime fechacreacion;
+    @Column(name = "fechacreacion", nullable = false)
+    private LocalDateTime fechaCreacion;
 
+    public Usuario() {
+    }
 
-
-    public Usuario(){}
-
-    public Usuario(Integer id_usuario, String nombre, String apellido, String email, String password, String rol, LocalDateTime fechacreacion) {
-        this.id_usuario = id_usuario;
+    public Usuario(Integer idUsuario, String nombre, String apellido,
+                   String email, String password, String rol,
+                   LocalDateTime fechaCreacion) {
+        this.idUsuario = idUsuario;
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
         this.password = password;
         this.rol = rol;
-        this.fechacreacion = fechacreacion;
+        this.fechaCreacion = fechaCreacion;
     }
 
-    public Integer getId() {
-        return id_usuario;
+    public Integer getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setId(Integer id) {
-        this.id_usuario = id;
+    public void setIdUsuario(Integer idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
     public String getNombre() {
@@ -89,25 +93,23 @@ public class Usuario {
         this.rol = rol;
     }
 
-    public LocalDateTime getFechacreacion() {
-        return fechacreacion;
+    public LocalDateTime getFechaCreacion() {
+        return fechaCreacion;
     }
 
-    public void setFechacreacion(LocalDateTime fechacreacion) {
-        this.fechacreacion = fechacreacion;
+    public void setFechaCreacion(LocalDateTime fechaCreacion) {
+        this.fechaCreacion = fechaCreacion;
     }
-
 
     @Override
     public String toString() {
-        return "usuario{" +
-                "id=" + id_usuario +
+        return "Usuario{" +
+                "idUsuario=" + idUsuario +
                 ", nombre='" + nombre + '\'' +
                 ", apellido='" + apellido + '\'' +
                 ", email='" + email + '\'' +
-                ", contraseña='" + password + '\'' +
                 ", rol='" + rol + '\'' +
-                ", fecha_creacion=" + fechacreacion +
+                ", fechaCreacion=" + fechaCreacion +
                 '}';
     }
 }
