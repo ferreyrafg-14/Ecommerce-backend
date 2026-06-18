@@ -1,4 +1,4 @@
-package com.federico.Ecommerce.models;
+package com.federico.Ecommerce.models.Entity;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
