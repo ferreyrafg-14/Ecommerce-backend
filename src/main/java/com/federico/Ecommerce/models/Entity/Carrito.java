@@ -1,8 +1,11 @@
 package com.federico.Ecommerce.models.Entity;
+
 import jakarta.persistence.*;
+
 @Entity
 @Table(name = "carrito")
-public class Carrito{
+public class Carrito {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_carrito")
@@ -10,14 +13,14 @@ public class Carrito{
 
     @OneToOne
     @JoinColumn(name = "id_usuario")
-    private Integer id_usuario;
+    private Usuario usuario;
 
     public Carrito() {
     }
 
-    public Carrito(Integer id_carrito, Integer id_usuario) {
+    public Carrito(Integer id_carrito, Usuario usuario) {
         this.id_carrito = id_carrito;
-        this.id_usuario = id_usuario;
+        this.usuario = usuario;
     }
 
     public Integer getId_carrito() {
@@ -28,19 +31,19 @@ public class Carrito{
         this.id_carrito = id_carrito;
     }
 
-    public Integer getId_usuario() {
-        return id_usuario;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setId_usuario(Integer id_usuario) {
-        this.id_usuario = id_usuario;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     @Override
     public String toString() {
         return "Carrito{" +
                 "id_carrito=" + id_carrito +
-                ", id_usuario=" + id_usuario +
+                ", usuario=" + usuario +
                 '}';
     }
 }
