@@ -12,27 +12,52 @@ public class DetalleCarrito {
 
     @ManyToOne
     @MapsId("id_carrito")
-    @JoinColumn(name = "id_carrito" ,nullable = false , unique = true )
-    private Integer id_carrito;
+    @JoinColumn(name = "id_carrito", nullable = false)
+    private Carrito carrito;
 
     @ManyToOne
     @MapsId("id_producto")
-    @JoinColumn(name = "id_producto" ,nullable = false , unique = true )
-    private Integer id_producto;
+    @JoinColumn(name = "id_producto", nullable = false)
+    private Producto producto;
 
-    @Column(name = "cantidad" , nullable = false)
+    @Column(name = "cantidad", nullable = false)
     private Integer cantidad;
 
     public DetalleCarrito() {
     }
 
-    public DetalleCarrito(DetalleCarritoId detalleCarritoId , Integer cantidad) {
+    public DetalleCarrito(DetalleCarritoId detalleCarritoId,
+                          Carrito carrito,
+                          Producto producto,
+                          Integer cantidad) {
         this.detalleCarritoId = detalleCarritoId;
+        this.carrito = carrito;
+        this.producto = producto;
         this.cantidad = cantidad;
     }
 
     public DetalleCarritoId getDetalleCarritoId() {
         return detalleCarritoId;
+    }
+
+    public void setDetalleCarritoId(DetalleCarritoId detalleCarritoId) {
+        this.detalleCarritoId = detalleCarritoId;
+    }
+
+    public Carrito getCarrito() {
+        return carrito;
+    }
+
+    public void setCarrito(Carrito carrito) {
+        this.carrito = carrito;
+    }
+
+    public Producto getProducto() {
+        return producto;
+    }
+
+    public void setProducto(Producto producto) {
+        this.producto = producto;
     }
 
     public Integer getCantidad() {
@@ -41,5 +66,13 @@ public class DetalleCarrito {
 
     public void setCantidad(Integer cantidad) {
         this.cantidad = cantidad;
+    }
+
+    @Override
+    public String toString() {
+        return "DetalleCarrito{" +
+                "detalleCarritoId=" + detalleCarritoId +
+                ", cantidad=" + cantidad +
+                '}';
     }
 }
