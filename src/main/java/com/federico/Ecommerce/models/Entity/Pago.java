@@ -12,28 +12,29 @@ public class Pago {
     @Column(name = "id_pago")
     private Integer id_pago;
 
-    @Column(name = "metodo" , nullable = false)
+    @Column(name = "metodo", nullable = false)
     private String metodo;
 
-    @Column(name = "estadopago" , nullable = false)
+    @Column(name = "estadopago", nullable = false)
     private boolean estadopago;
 
-    @Column(name = "fecha_pago" , nullable = false)
+    @Column(name = "fecha_pago", nullable = false)
     private LocalDateTime fecha_pago;
 
     @ManyToOne
     @JoinColumn(name = "id_pedido")
-    private Integer id_pedido;
+    private Pedido pedido;
 
     public Pago() {
     }
 
-    public Pago(Integer id_pago, String metodo, boolean estadopago, LocalDateTime fecha_pago, Integer id_pedido) {
+    public Pago(Integer id_pago, String metodo, boolean estadopago,
+                LocalDateTime fecha_pago, Pedido pedido) {
         this.id_pago = id_pago;
         this.metodo = metodo;
         this.estadopago = estadopago;
         this.fecha_pago = fecha_pago;
-        this.id_pedido = id_pedido;
+        this.pedido = pedido;
     }
 
     public Integer getId_pago() {
@@ -68,14 +69,13 @@ public class Pago {
         this.fecha_pago = fecha_pago;
     }
 
-    public Integer getId_pedido() {
-        return id_pedido;
+    public Pedido getPedido() {
+        return pedido;
     }
 
-    public void setId_pedido(Integer id_pedido) {
-        this.id_pedido = id_pedido;
+    public void setPedido(Pedido pedido) {
+        this.pedido = pedido;
     }
-
 
     @Override
     public String toString() {
@@ -84,7 +84,7 @@ public class Pago {
                 ", metodo='" + metodo + '\'' +
                 ", estadopago=" + estadopago +
                 ", fecha_pago=" + fecha_pago +
-                ", id_pedido=" + id_pedido +
+                ", pedido=" + pedido +
                 '}';
     }
 }
