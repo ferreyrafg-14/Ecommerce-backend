@@ -2,7 +2,7 @@ package com.federico.Ecommerce.models.Entity;
 
 import jakarta.persistence.*;
 import java.math.BigDecimal;
-import java.time.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "pedido")
@@ -14,7 +14,7 @@ public class Pedido {
     private Integer id_pedido;
 
     @Column(name = "estadopedido", nullable = false)
-    private boolean estadopedido;
+    private String estadopedido;
 
     @Column(name = "total", nullable = false)
     private BigDecimal total;
@@ -23,14 +23,14 @@ public class Pedido {
     private LocalDateTime fechacreacion;
 
     @ManyToOne
-    @JoinColumn(name = "id_usuario", nullable = false, unique = true)
+    @JoinColumn(name = "id_usuario", nullable = false)
     private Usuario usuario;
 
     // Constructor vacío
     public Pedido() {}
 
     // Constructor con parámetros
-    public Pedido(Integer id_pedido, boolean estadopedido, BigDecimal total,
+    public Pedido(Integer id_pedido, String estadopedido, BigDecimal total,
                   LocalDateTime fechacreacion, Usuario usuario) {
         this.id_pedido = id_pedido;
         this.estadopedido = estadopedido;
@@ -44,7 +44,7 @@ public class Pedido {
         return id_pedido;
     }
 
-    public boolean isEstadopedido() {
+    public String getEstadopedido() {
         return estadopedido;
     }
 
@@ -65,7 +65,7 @@ public class Pedido {
         this.id_pedido = id_pedido;
     }
 
-    public void setEstadopedido(boolean estadopedido) {
+    public void setEstadopedido(String estadopedido) {
         this.estadopedido = estadopedido;
     }
 
@@ -86,7 +86,7 @@ public class Pedido {
     public String toString() {
         return "Pedido{" +
                 "id_pedido=" + id_pedido +
-                ", estadopedido=" + estadopedido +
+                ", estadopedido='" + estadopedido + '\'' +
                 ", total=" + total +
                 ", fechacreacion=" + fechacreacion +
                 ", usuario=" + usuario +

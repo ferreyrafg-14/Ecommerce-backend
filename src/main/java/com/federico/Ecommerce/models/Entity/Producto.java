@@ -24,7 +24,7 @@ public class Producto {
     @Column(name = "stock", nullable = false)
     private Integer stock;
 
-    @Column(name = "imageurl", nullable = false)
+    @Column(name = "imagenurl", nullable = false)
     private String imageUrl;
 
     @ManyToOne

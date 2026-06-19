@@ -24,16 +24,16 @@ public class DetallePedido {
     @Column(name = "cantidad", nullable = false)
     private Integer cantidad;
 
-    @Column(name = "preciunitario", nullable = false, precision = 10, scale = 2)
-    private BigDecimal preciunitario;
+    @Column(name = "preciounitario", nullable = false, precision = 10, scale = 2)
+    private BigDecimal preciounitario;
 
     public DetallePedido() {
     }
 
-    public DetallePedido(DetallePedidoId detallePedidoId, Integer cantidad, BigDecimal preciunitario) {
+    public DetallePedido(DetallePedidoId detallePedidoId, Integer cantidad, BigDecimal preciounitario) {
         this.detallePedidoId = detallePedidoId;
         this.cantidad = cantidad;
-        this.preciunitario = preciunitario;
+        this.preciounitario = preciounitario;
     }
 
     public DetallePedidoId getDetallePedidoId() {
@@ -65,10 +65,10 @@ public class DetallePedido {
     }
 
     public BigDecimal getPreciunitario() {
-        return preciunitario;
+        return preciounitario;
     }
 
     public void setPreciunitario(BigDecimal preciunitario) {
-        this.preciunitario = preciunitario;
+        this.preciounitario = preciunitario;
     }
 }
