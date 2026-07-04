@@ -7,5 +7,5 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.Optional;
 
 public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
-       Optional<Usuario> findById(Integer id);//SELECT * FROM usuario WHERE id = ?;
+
 }
