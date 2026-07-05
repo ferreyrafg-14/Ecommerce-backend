@@ -1,6 +1,8 @@
 package com.federico.Ecommerce.models.Entity;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
+
 import java.time.LocalDateTime;
 
 @Entity
@@ -27,6 +29,7 @@ public class Usuario {
     @Column(name = "rol", nullable = false)
     private String rol;
 
+    @CreationTimestamp
     @Column(name = "fechacreacion", nullable = false)
     private LocalDateTime fechaCreacion;
 

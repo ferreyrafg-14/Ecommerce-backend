@@ -1,17 +1,23 @@
 package com.federico.Ecommerce.controllers;
 
 import com.federico.Ecommerce.models.Entity.Usuario;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.federico.Ecommerce.services.UsuarioService;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/usuarios")
 public class UsuarioController {
+    private final UsuarioService service;
+
+    public UsuarioController(UsuarioService service) {
+        this.service = service;
+    }
 
     @PostMapping
     public Usuario crearUsuario(@RequestBody Usuario usuario){
-        return service.crear(usuario);
+        return service.crearUsuario(usuario);
     }
-}
+
+
