@@ -16,8 +16,10 @@ public class UsuarioController {
     }
 
     @PostMapping
-    public Usuario crearUsuario(@RequestBody Usuario usuario){
+    public Usuario crearUsuario(@RequestBody Usuario usuario) {
         return service.crearUsuario(usuario);
     }
+
+}
 
 
