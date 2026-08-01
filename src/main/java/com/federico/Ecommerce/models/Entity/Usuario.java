@@ -1,5 +1,6 @@
 package com.federico.Ecommerce.models.Entity;
 
+import com.federico.Ecommerce.enums.Rol;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -27,7 +28,8 @@ public class Usuario {
     private String password;
 
     @Column(name = "rol", nullable = false)
-    private String rol;
+    @Enumerated(EnumType.STRING)
+    private Rol rol;
 
     @CreationTimestamp
     @Column(name = "fechacreacion", nullable = false)
@@ -37,7 +39,7 @@ public class Usuario {
     }
 
     public Usuario(Integer idUsuario, String nombre, String apellido,
-                   String email, String password, String rol,
+                   String email, String password, Rol rol,
                    LocalDateTime fechaCreacion) {
         this.idUsuario = idUsuario;
         this.nombre = nombre;
@@ -88,11 +90,11 @@ public class Usuario {
         this.password = password;
     }
 
-    public String getRol() {
+    public Rol getRol() {
         return rol;
     }
 
-    public void setRol(String rol) {
+    public void setRol(Rol rol) {
         this.rol = rol;
     }
 
