@@ -26,6 +26,18 @@ public class UsuarioController {
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
+    @GetMapping("{id}")
+    public ResponseEntity<UsuarioResponseDto> ObtenerUsuario(@PathVariable Integer id){
+        UsuarioResponseDto response = service.obtenerUsuarioId(id);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
+
+    /*@DeleteMapping("{id}")
+    public ResponseEntity<UsuarioResponseDto> EliminarUsuario(@PathVariable Integer id){
+        UsuarioResponseDto response = service.eliminarUsuarioId(id);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+    }*/
+
 }
 
 

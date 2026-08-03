@@ -1,4 +1,5 @@
 package com.federico.Ecommerce.dto.response;
+import com.federico.Ecommerce.enums.Rol;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,7 +17,7 @@ public class UsuarioResponseDto {
 
     private String email;
 
-    private String rol;
+    private Rol rol;
 
     private LocalDateTime fechaCreacion;
 
