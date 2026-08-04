@@ -9,6 +9,9 @@ import com.federico.Ecommerce.repositories.UsuarioRepository;
 
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 
 
@@ -33,8 +36,25 @@ public class UsuarioService {
 
      public UsuarioResponseDto obtenerUsuarioId(Integer id){
          Usuario usuarioObtenido = repository.findById(id)
-                 .orElseThrow(() -> new ResourceNotFoundException("No se ha encontrado usuario con ID: " + id)) ;
+                 .orElseThrow(() -> new ResourceNotFoundException("Usuario no encontrado ")) ;
          return usuariomapper.toResponseDto(usuarioObtenido);
+     }
+
+     public List<UsuarioResponseDto> ObtenerUsuarios(){
+            List<Usuario> listaUsuarios = repository.findAll();
+
+            if(listaUsuarios.isEmpty()){
+                throw new ResourceNotFoundException("Usuarios no encontrados");
+            }
+
+            List<UsuarioResponseDto> listaResponseDto = new ArrayList<>();
+
+            for(Usuario usuario : listaUsuarios){
+                listaResponseDto.add(usuariomapper.toResponseDto(usuario));
+            }
+
+            return  listaResponseDto;
+
      }
 
 
