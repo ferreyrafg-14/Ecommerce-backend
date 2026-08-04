@@ -7,6 +7,7 @@ import com.federico.Ecommerce.mapper.UsuarioMapper;
 import com.federico.Ecommerce.models.Entity.Usuario;
 import com.federico.Ecommerce.repositories.UsuarioRepository;
 
+
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -56,6 +57,26 @@ public class UsuarioService {
             return  listaResponseDto;
 
      }
+
+     /*public void  EliminarUsuarioId(Integer id){
+         if(!repository.existsById(id)){
+             throw new ResourceNotFoundException("Usuario no encontrado");
+         }
+         repository.deleteById(id);
+
+     }*/
+
+    public UsuarioResponseDto EliminarUsuarioId(Integer id){
+        Usuario usuario = repository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Usuario no encontrado"));
+
+        UsuarioResponseDto dto = usuariomapper.toResponseDto(usuario);
+
+        repository.deleteById(id);
+
+        return dto;
+
+    }
 
 
 }

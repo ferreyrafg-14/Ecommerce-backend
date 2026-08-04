@@ -39,11 +39,16 @@ public class UsuarioController {
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
-    /*@DeleteMapping("{id}")
-    public ResponseEntity<UsuarioResponseDto> EliminarUsuario(@PathVariable Integer id){
-        UsuarioResponseDto response = service.eliminarUsuarioId(id);
-        return ResponseEntity.status(HttpStatus.OK).body(response);
+    /*@DeleteMapping("{id}") LO uso si no quiero q el cliente sepa el usuario eliminado
+    public ResponseEntity<Void> EliminarUsuario(@PathVariable Integer id){
+         service.EliminarUsuarioId(id);
+        return ResponseEntity.noContent().build();
     }*/
+    @DeleteMapping("{id}")
+    public ResponseEntity<UsuarioResponseDto>   deleteById(@PathVariable Integer id){
+        UsuarioResponseDto response = service.EliminarUsuarioId(id);
+        return ResponseEntity.ok(response);
+    }
 
 }
 
