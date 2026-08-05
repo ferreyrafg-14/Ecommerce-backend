@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 
 
 @RestController
@@ -26,17 +27,28 @@ public class UsuarioController {
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
+    @GetMapping
+    public ResponseEntity<List<UsuarioResponseDto>> findAll(){
+        List<UsuarioResponseDto> response = service.ObtenerUsuarios();
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
+
     @GetMapping("{id}")
-    public ResponseEntity<UsuarioResponseDto> ObtenerUsuario(@PathVariable Integer id){
+    public ResponseEntity<UsuarioResponseDto> findById(@PathVariable Integer id){
         UsuarioResponseDto response = service.obtenerUsuarioId(id);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
-    /*@DeleteMapping("{id}")
-    public ResponseEntity<UsuarioResponseDto> EliminarUsuario(@PathVariable Integer id){
-        UsuarioResponseDto response = service.eliminarUsuarioId(id);
-        return ResponseEntity.status(HttpStatus.OK).body(response);
+    /*@DeleteMapping("{id}") LO uso si no quiero q el cliente sepa el usuario eliminado
+    public ResponseEntity<Void> EliminarUsuario(@PathVariable Integer id){
+         service.EliminarUsuarioId(id);
+        return ResponseEntity.noContent().build();
     }*/
+    @DeleteMapping("{id}")
+    public ResponseEntity<UsuarioResponseDto>   deleteById(@PathVariable Integer id){
+        UsuarioResponseDto response = service.EliminarUsuarioId(id);
+        return ResponseEntity.ok(response);
+    }
 
 }
 
