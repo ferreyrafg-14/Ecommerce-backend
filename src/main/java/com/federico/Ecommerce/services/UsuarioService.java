@@ -1,5 +1,7 @@
 package com.federico.Ecommerce.services;
 
+import com.federico.Ecommerce.dto.request.UsuarioPatchDto;
+import com.federico.Ecommerce.dto.request.UsuarioPutDto;
 import com.federico.Ecommerce.dto.request.UsuarioRequestDto;
 import com.federico.Ecommerce.dto.response.UsuarioResponseDto;
 import com.federico.Ecommerce.exception.ResourceNotFoundException;
@@ -26,7 +28,7 @@ public class UsuarioService {
          this.usuariomapper = usuariomapper;
 
      }
-
+    //POSTMAPPING
      public UsuarioResponseDto crearUsuario(UsuarioRequestDto dto){
          Usuario usuarioEntity = usuariomapper.toEntity(dto);
 
@@ -35,6 +37,27 @@ public class UsuarioService {
          return usuariomapper.toResponseDto(usuarioGuardado);
      }
 
+     //PUTMAPPING
+     public UsuarioResponseDto updateAll(Integer id , UsuarioPutDto dto) {
+         Usuario usuario = repository.findById(id)
+                 .orElseThrow(() -> new ResourceNotFoundException("Usuario no encontrado"));
+
+         usuariomapper.updateUsuarioFromDtoAll(dto ,usuario);
+         Usuario datos = repository.save(usuario);
+         return usuariomapper.toResponseDto(datos);
+     }
+
+     //PATCHMAPPING
+    public UsuarioResponseDto update(Integer id , UsuarioPatchDto dto) {
+        Usuario usuario = repository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Usuario no encontrado"));
+
+        usuariomapper.updateUsuarioFromDto(dto ,usuario);
+         Usuario datos = repository.save(usuario);
+        return usuariomapper.toResponseDto(datos);
+    }
+
+     //GETMAPPING
      public UsuarioResponseDto obtenerUsuarioId(Integer id){
          Usuario usuarioObtenido = repository.findById(id)
                  .orElseThrow(() -> new ResourceNotFoundException("Usuario no encontrado ")) ;
@@ -57,7 +80,7 @@ public class UsuarioService {
             return  listaResponseDto;
 
      }
-
+    //DELETE MAPPING
      /*public void  EliminarUsuarioId(Integer id){
          if(!repository.existsById(id)){
              throw new ResourceNotFoundException("Usuario no encontrado");

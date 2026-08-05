@@ -1,6 +1,8 @@
 package com.federico.Ecommerce.controllers;
 
 
+import com.federico.Ecommerce.dto.request.UsuarioPatchDto;
+import com.federico.Ecommerce.dto.request.UsuarioPutDto;
 import com.federico.Ecommerce.dto.request.UsuarioRequestDto;
 import com.federico.Ecommerce.dto.response.UsuarioResponseDto;
 import com.federico.Ecommerce.services.UsuarioService;
@@ -38,6 +40,19 @@ public class UsuarioController {
         UsuarioResponseDto response = service.obtenerUsuarioId(id);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
+
+    @PutMapping("{id}")
+    public ResponseEntity<UsuarioResponseDto> updateAll(@RequestBody UsuarioPutDto dto, @PathVariable Integer id){
+         UsuarioResponseDto response = service.updateAll(id , dto);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
+
+    @PatchMapping("{id}")
+    public ResponseEntity<UsuarioResponseDto> update( @RequestBody UsuarioPatchDto dto , @PathVariable Integer id ){
+        UsuarioResponseDto response = service.update(id , dto);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
+
 
     /*@DeleteMapping("{id}") LO uso si no quiero q el cliente sepa el usuario eliminado
     public ResponseEntity<Void> EliminarUsuario(@PathVariable Integer id){
