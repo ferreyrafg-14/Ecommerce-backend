@@ -1,29 +1,29 @@
 package com.federico.Ecommerce.models.embeddable;
 
 import jakarta.persistence.Embeddable;
-
 import java.io.Serializable;
 import java.util.Objects;
 
 @Embeddable
-public class DetalleCarritoId implements Serializable {
-    private Integer id_carrito;
+public class OrderItemId implements Serializable {
+
+    private Integer id_pedido;
     private Integer id_producto;
 
-    public DetalleCarritoId() {
+    public OrderItemId() {
     }
 
-    public DetalleCarritoId(Integer id_carrito, Integer id_producto) {
-        this.id_carrito = id_carrito;
+    public OrderItemId(Integer id_pedido, Integer id_producto) {
+        this.id_pedido = id_pedido;
         this.id_producto = id_producto;
     }
 
-    public Integer getId_carrito() {
-        return id_carrito;
+    public Integer getId_orden() {
+        return id_pedido;
     }
 
-    public void setId_carrito(Integer id_carrito) {
-        this.id_carrito = id_carrito;
+    public void setId_orden(Integer id_pedido) {
+        this.id_pedido = id_pedido;
     }
 
     public Integer getId_producto() {
@@ -37,12 +37,13 @@ public class DetalleCarritoId implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
-        DetalleCarritoId that = (DetalleCarritoId) o;
-        return Objects.equals(id_carrito, that.id_carrito) && Objects.equals(id_producto, that.id_producto);
+        OrderItemId that = (OrderItemId) o;
+        return Objects.equals(id_pedido, that.id_pedido) &&
+                Objects.equals(id_producto, that.id_producto);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id_carrito, id_producto);
+        return Objects.hash(id_pedido, id_producto);
     }
 }
