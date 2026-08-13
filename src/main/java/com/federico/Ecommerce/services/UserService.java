@@ -105,7 +105,7 @@ public class UserService {
                 .orElseThrow(() -> new ResourceNotFoundException("Usuario no encontrado"));
 
         UserResponseDto responseDto = userMapper.toResponseDto(user);
-
+        
         repository.deleteById(id);
 
         return responseDto;
