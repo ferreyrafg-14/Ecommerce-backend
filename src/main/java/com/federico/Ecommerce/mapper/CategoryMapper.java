@@ -2,6 +2,7 @@ package com.federico.Ecommerce.mapper;
 
 import com.federico.Ecommerce.dto.request.Category.CategoryPatchDto;
 import com.federico.Ecommerce.dto.request.Category.CategoryPostDto;
+import com.federico.Ecommerce.dto.request.Category.CategoryPutDto;
 import com.federico.Ecommerce.dto.response.Category.CategoryResponseDto;
 import com.federico.Ecommerce.models.Entity.Category;
 import org.mapstruct.BeanMapping;
@@ -22,5 +23,12 @@ public interface CategoryMapper {
             CategoryPatchDto dto,
             @MappingTarget Category category
     );
+
+    void updateCategoryFromDtoAll(
+            CategoryPutDto dto,
+            @MappingTarget Category category
+    );
+
+
 
 }
