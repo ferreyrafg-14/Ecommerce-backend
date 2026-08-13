@@ -1,31 +1,28 @@
 package com.federico.Ecommerce.controllers;
 
+
 import com.federico.Ecommerce.dto.request.Product.ProductRequestDto;
-import com.federico.Ecommerce.dto.request.User.UserRequestDto;
 import com.federico.Ecommerce.dto.response.Product.ProductResponseDto;
-import com.federico.Ecommerce.dto.response.User.UserResponseDto;
-import com.federico.Ecommerce.services.UserService;
+import com.federico.Ecommerce.services.ProductService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/productos")
 public class ProductController {
-    private UserService userService;
+    private final ProductService service;
 
-    public ProductController(UserService userService) {
-        this.userService = userService;
+    public ProductController(ProductService service) {
+            this.service = service;
     }
 
-    /*POST
     @PostMapping
-    public ResponseEntity<ProductResponseDto> create(@Valid @RequestBody ProductRequestDto ProductRequestDto){
-        ProductResponseDto productResponseDto = userService.createProduct(ProductRequestDto);
-        return ResponseEntity.status(HttpStatus.CREATED).body(productResponseDto);
-    }*/
+    public ResponseEntity<ProductResponseDto> createProduct(@Valid @RequestBody ProductRequestDto dto) {
+        ProductResponseDto response = service.createProduct(dto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+
+    }
+
 }
