@@ -2,6 +2,9 @@ package com.federico.Ecommerce.models.Entity;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "carrito")
 public class Cart {
@@ -14,6 +17,9 @@ public class Cart {
     @OneToOne
     @JoinColumn(name = "id_usuario")
     private User user;
+
+    @OneToMany(mappedBy = "Cart", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<CartItem> cartItems = new ArrayList<>();
 
     public Cart() {
     }

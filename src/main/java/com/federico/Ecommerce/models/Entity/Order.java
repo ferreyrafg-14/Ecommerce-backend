@@ -1,8 +1,12 @@
 package com.federico.Ecommerce.models.Entity;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "pedido")
@@ -16,15 +20,22 @@ public class Order {
     @Column(name = "estadopedido", nullable = false)
     private String orderStatus;
 
-    @Column(name = "total", nullable = false)
+    @Column(name = "total", nullable = true)
     private BigDecimal total;
 
+    @CreationTimestamp
     @Column(name = "fechacreacion", nullable = false)
     private LocalDateTime createdAt;
 
     @ManyToOne
     @JoinColumn(name = "id_usuario", nullable = false)
     private User user;
+
+
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<OrderItem> orderDetails = new ArrayList<>();
+
+
 
     // Constructor vacío
     public Order() {}
@@ -79,6 +90,14 @@ public class Order {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public List<OrderItem> getOrderDetails() {
+        return orderDetails;
+    }
+
+    public void setOrderDetails(List<OrderItem> orderDetails) {
+        this.orderDetails = orderDetails;
     }
 
     // toString
