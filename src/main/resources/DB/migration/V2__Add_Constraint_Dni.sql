@@ -1,0 +1,9 @@
+ALTER TABLE usuario
+ADD CONSTRAINT uq_users_dni UNIQUE(dni);
+
+ALTER TABLE usuario
+ADD CONSTRAINT check_users_dni
+CHECK (dni >= 1000000 AND dni <= 99999999);
+
+ALTER TABLE usuario
+ALTER COLUMN dni SET NOT NULL;
