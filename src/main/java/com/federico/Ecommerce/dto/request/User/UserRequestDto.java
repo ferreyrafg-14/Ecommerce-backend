@@ -2,6 +2,7 @@ package com.federico.Ecommerce.dto.request.User;
 import com.federico.Ecommerce.enums.Rol;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
@@ -25,4 +26,7 @@ public class UserRequestDto {
 
 
     private Rol role;
+
+   @NotNull
+    private Integer dni;
 }
