@@ -35,7 +35,12 @@ public class Order {
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OrderItem> orderDetails = new ArrayList<>();
 
+    @OneToMany(mappedBy = "order")
+    private List<Payment> payments = new ArrayList<>();
 
+    public List<Payment> getPayments() {
+        return payments;
+    }
 
     // Constructor vacío
     public Order() {}

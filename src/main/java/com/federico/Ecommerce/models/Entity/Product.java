@@ -2,6 +2,8 @@ package com.federico.Ecommerce.models.Entity;
 
 import jakarta.persistence.*;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "producto")
@@ -30,6 +32,9 @@ public class Product {
     @ManyToOne
     @JoinColumn(name = "id_categoria" , nullable = false)
     private Category category;
+
+    @OneToMany(mappedBy = "product")
+    private List<OrderItem> orderItems = new ArrayList<>();
 
     public Product() {
     }

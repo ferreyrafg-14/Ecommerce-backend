@@ -17,6 +17,8 @@ public class UserResponseDto {
 
     private String email;
 
+    private Integer dni;
+
     private Rol role;
 
     private LocalDateTime createdAt;

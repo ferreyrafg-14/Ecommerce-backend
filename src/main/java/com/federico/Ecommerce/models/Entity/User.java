@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "usuario")
@@ -31,16 +33,22 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Rol role;
 
+    @Column(name = "dni" , nullable = false)
+    private Integer dni;
+
     @CreationTimestamp
     @Column(name = "fechacreacion", nullable = false)
     private LocalDateTime createdAt;
+
+    @OneToMany(mappedBy = "user")
+    private List<Order> orders = new ArrayList<>();
 
     public User() {
     }
 
     public User(Integer userId, String firstname, String lastname,
                 String email, String password, Rol role,
-                LocalDateTime createdAt) {
+                LocalDateTime createdAt , Integer dni) {
         this.userId = userId;
         this.firstname = firstname;
         this.lastname = lastname;
@@ -48,6 +56,7 @@ public class User {
         this.password = password;
         this.role = role;
         this.createdAt = createdAt;
+        this.dni = dni;
     }
 
     public Integer getUserId() {
@@ -106,15 +115,34 @@ public class User {
         this.createdAt = createdAt;
     }
 
+    public Integer getDni() {
+        return dni;
+    }
+
+    public void setDni(Integer dni) {
+        this.dni = dni;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
+    }
+
     @Override
-    public String toString() {
+    public String  toString() {
         return "User{" +
                 "userId=" + userId +
                 ", firstname='" + firstname + '\'' +
                 ", lastname='" + lastname + '\'' +
                 ", email='" + email + '\'' +
-                ", role='" + role + '\'' +
+                ", password='" + password + '\'' +
+                ", role=" + role +
+                ", dni=" + dni +
                 ", createdAt=" + createdAt +
+                ", orders=" + orders +
                 '}';
     }
 }

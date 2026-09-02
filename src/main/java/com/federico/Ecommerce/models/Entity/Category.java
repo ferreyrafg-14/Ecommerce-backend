@@ -2,6 +2,9 @@ package com.federico.Ecommerce.models.Entity;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "categoria")
 public class Category {
@@ -13,12 +16,20 @@ public class Category {
     @Column(name = "nombre_categoria" , nullable = false , unique = true)
     private String categoryName;
 
+    @OneToMany(mappedBy = "category")
+    private List<Product> products = new ArrayList<>();
+
     public Category() {}
 
     public Category(Integer categoryId, String categoryName) {
         this.categoryId = categoryId;
         this.categoryName = categoryName;
     }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
 
     public Integer getCategoryId() {
         return categoryId;
