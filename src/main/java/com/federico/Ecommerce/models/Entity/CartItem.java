@@ -10,12 +10,12 @@ public class CartItem {
     @EmbeddedId
     private CartItemId cartItemId;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("id_carrito")
     @JoinColumn(name = "id_carrito", nullable = false)
     private Cart cart;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("id_producto")
     @JoinColumn(name = "id_producto", nullable = false)
     private Product product;

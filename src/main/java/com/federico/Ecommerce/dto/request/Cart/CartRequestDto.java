@@ -12,4 +12,7 @@ public class CartRequestDto {
     @NotNull
     private Integer userId;
 
+    @NotNull
+    private Integer Quantity;
+
 }
