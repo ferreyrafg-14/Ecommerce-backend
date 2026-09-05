@@ -19,9 +19,10 @@ public class CartController {
         this.service = service;
     }
 
-    @PostMapping()
-    public ResponseEntity<CartResponseDto> CreateCart(@Valid @RequestBody CartRequestDto dto){
-        CartResponseDto response = service.CreateCart(dto);
+
+    @PostMapping("/{productId}")
+    public ResponseEntity<CartResponseDto> createCart(@Valid @RequestBody CartRequestDto dto , @PathVariable Integer productId){
+        CartResponseDto response = service.createCart(dto , productId);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 }
