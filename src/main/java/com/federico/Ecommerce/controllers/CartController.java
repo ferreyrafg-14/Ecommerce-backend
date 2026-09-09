@@ -1,6 +1,5 @@
 package com.federico.Ecommerce.controllers;
-
-import com.federico.Ecommerce.dto.request.Cart.CartRequestDto;
+import com.federico.Ecommerce.dto.request.Cart.AddCartRequestDto;
 import com.federico.Ecommerce.dto.response.Cart.CartResponseDto;
 
 import com.federico.Ecommerce.services.CartService;
@@ -20,9 +19,9 @@ public class CartController {
     }
 
 
-    @PostMapping("/{productId}")
-    public ResponseEntity<CartResponseDto> createCart(@Valid @RequestBody CartRequestDto dto , @PathVariable Integer productId){
-        CartResponseDto response = service.createCart(dto , productId);
+    @PostMapping()
+    public ResponseEntity<CartResponseDto> createCart(@RequestBody @Valid AddCartRequestDto dto){
+        CartResponseDto response = service.createCart(dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 }
