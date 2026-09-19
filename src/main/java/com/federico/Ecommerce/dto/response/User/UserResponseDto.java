@@ -21,6 +21,8 @@ public class UserResponseDto {
 
     private Rol role;
 
+    private Integer age;
+
     private LocalDateTime createdAt;
 
 }

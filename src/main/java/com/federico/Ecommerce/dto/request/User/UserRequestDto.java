@@ -1,14 +1,11 @@
 package com.federico.Ecommerce.dto.request.User;
 import com.federico.Ecommerce.enums.Rol;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.validation.constraints.*;
+import lombok.*;
 
-@Setter
-@Getter
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class UserRequestDto {
     @NotBlank(message = "El nombre es obligatorio")
     private String firstname;
@@ -29,4 +26,8 @@ public class UserRequestDto {
 
    @NotNull
     private Integer dni;
+
+   @NotNull
+   @Positive
+    private Integer age;
 }

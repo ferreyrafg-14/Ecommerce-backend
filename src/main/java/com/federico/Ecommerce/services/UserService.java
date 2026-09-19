@@ -9,6 +9,7 @@ import com.federico.Ecommerce.mapper.UserMapper;
 import com.federico.Ecommerce.models.Entity.User;
 import com.federico.Ecommerce.repositories.UserRepository;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -19,18 +20,20 @@ public class UserService {
 
     private final UserRepository repository;
     private final UserMapper userMapper;
-
-    public UserService(UserRepository repository, UserMapper userMapper) {
+    private final PasswordEncoder encoder;
+    public UserService(UserRepository repository, UserMapper userMapper ,  PasswordEncoder encoder) {
         this.repository = repository;
         this.userMapper = userMapper;
+        this.encoder = encoder;
     }
 
     // POST
     public UserResponseDto createUser(UserRequestDto dto) {
 
-        User userEntity = userMapper.toEntity(dto);
-
-        User savedUser = repository.save(userEntity);
+        User user = userMapper.toEntity(dto);
+        String encodedPassword = encoder.encode(dto.getPassword());
+        user.setPassword(encodedPassword);
+        User savedUser = repository.save(user);
 
         return userMapper.toResponseDto(savedUser);
     }
