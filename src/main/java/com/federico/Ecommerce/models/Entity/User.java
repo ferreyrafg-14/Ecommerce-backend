@@ -36,6 +36,9 @@ public class User {
     @Column(name = "dni" , nullable = false)
     private Integer dni;
 
+    @Column(name = "edad"  , nullable = false)
+    private Integer age;
+
     @CreationTimestamp
     @Column(name = "fechacreacion", nullable = false)
     private LocalDateTime createdAt;
@@ -48,7 +51,7 @@ public class User {
 
     public User(Integer userId, String firstname, String lastname,
                 String email, String password, Rol role,
-                LocalDateTime createdAt , Integer dni) {
+                LocalDateTime createdAt , Integer dni , Integer age) {
         this.userId = userId;
         this.firstname = firstname;
         this.lastname = lastname;
@@ -57,6 +60,7 @@ public class User {
         this.role = role;
         this.createdAt = createdAt;
         this.dni = dni;
+        this.age = age;
     }
 
     public Integer getUserId() {
@@ -121,6 +125,14 @@ public class User {
 
     public void setDni(Integer dni) {
         this.dni = dni;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
     }
 
     public List<Order> getOrders() {
