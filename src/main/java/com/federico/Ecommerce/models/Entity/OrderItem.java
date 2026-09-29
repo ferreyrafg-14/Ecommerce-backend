@@ -71,4 +71,8 @@ public class OrderItem {
     public void setUnitPrice(BigDecimal unitPrice) {
         this.unitPrice = unitPrice;
     }
+
+    public void setOrderItemId(OrderItemId orderItemId) {
+        this.orderItemId = orderItemId;
+    }
 }
