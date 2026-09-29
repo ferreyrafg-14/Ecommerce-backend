@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/pedidos")
+@RequestMapping("/api/v1/orders")
 public class OrderController {
     private final OrderService service;
 
@@ -28,7 +28,7 @@ public class OrderController {
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
 
     }
-
+/*
     @PatchMapping("/{id}")
     public ResponseEntity<OrderResponseDto>  updateOrder(@Valid @PathVariable int id, @RequestBody OrderRequestDto dto) {
         OrderResponseDto response = service.updateOrder(id , dto);
@@ -58,5 +58,8 @@ public class OrderController {
         OrderResponseDto response = service.deleteOrder(id);
         return ResponseEntity.ok(response);
     }
+
+ */
+
 
 }

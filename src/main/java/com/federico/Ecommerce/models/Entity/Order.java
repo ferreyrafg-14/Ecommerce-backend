@@ -1,5 +1,6 @@
 package com.federico.Ecommerce.models.Entity;
 
+import com.federico.Ecommerce.enums.OrderStatus;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -17,10 +18,12 @@ public class Order {
     @Column(name = "id_pedido")
     private Integer orderId;
 
-    @Column(name = "estadopedido", nullable = false)
-    private String orderStatus;
 
-    @Column(name = "total", nullable = true)
+    @Column(name = "estadopedido", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private OrderStatus orderStatus;
+
+    @Column(name = "total")
     private BigDecimal total;
 
     @CreationTimestamp
@@ -46,7 +49,7 @@ public class Order {
     public Order() {}
 
     // Constructor con parámetros
-    public Order(Integer orderId, String orderStatus, BigDecimal total,
+    public Order(Integer orderId, OrderStatus orderStatus, BigDecimal total,
                  LocalDateTime createdAt, User user) {
         this.orderId = orderId;
         this.orderStatus = orderStatus;
@@ -60,7 +63,7 @@ public class Order {
         return orderId;
     }
 
-    public String getOrderStatus() {
+    public OrderStatus getOrderStatus() {
         return orderStatus;
     }
 
@@ -81,7 +84,7 @@ public class Order {
         this.orderId = orderId;
     }
 
-    public void setOrderStatus(String orderStatus) {
+    public void setOrderStatus(OrderStatus orderStatus) {
         this.orderStatus = orderStatus;
     }
 
