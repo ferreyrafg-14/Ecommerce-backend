@@ -18,10 +18,12 @@ public class Order {
     @Column(name = "id_pedido")
     private Integer orderId;
 
+
     @Column(name = "estadopedido", nullable = false)
+    @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus;
 
-    @Column(name = "total", nullable = true)
+    @Column(name = "total")
     private BigDecimal total;
 
     @CreationTimestamp
