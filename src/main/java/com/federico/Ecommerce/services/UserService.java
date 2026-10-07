@@ -28,14 +28,11 @@ public class UserService {
     }
 
     // POST
-    public UserResponseDto createUser(UserRequestDto dto) {
-
+    public void createUser(UserRequestDto dto) {
         User user = userMapper.toEntity(dto);
         String encodedPassword = encoder.encode(dto.getPassword());
         user.setPassword(encodedPassword);
-        User savedUser = repository.save(user);
-
-        return userMapper.toResponseDto(savedUser);
+        repository.save(user);
     }
 
     // PUT
