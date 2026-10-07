@@ -2,6 +2,7 @@ package com.federico.Ecommerce.controllers;
 import com.federico.Ecommerce.dto.request.User.UserPatchDto;
 import com.federico.Ecommerce.dto.request.User.UserPutDto;
 import com.federico.Ecommerce.dto.request.User.UserRequestDto;
+import com.federico.Ecommerce.dto.response.User.MessageResponseDto;
 import com.federico.Ecommerce.dto.response.User.UserResponseDto;
 import com.federico.Ecommerce.exception.ErrorResponse;
 import com.federico.Ecommerce.services.UserService;
@@ -37,11 +38,10 @@ public class UserController {
             content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
     })
     @PostMapping
-    public ResponseEntity<UserResponseDto> createUser(
+    public ResponseEntity<MessageResponseDto> createUser(
             @Valid @RequestBody UserRequestDto dto) {
-
-        UserResponseDto response = service.createUser(dto);
-
+        service.createUser(dto);
+        MessageResponseDto response = new MessageResponseDto("Usuario registrado correctamente ");
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
