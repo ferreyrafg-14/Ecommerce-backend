@@ -3,6 +3,8 @@ import com.federico.Ecommerce.enums.Rol;
 import jakarta.validation.constraints.*;
 import lombok.*;
 
+import java.time.LocalDate;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -28,6 +30,5 @@ public class UserRequestDto {
     private Integer dni;
 
    @NotNull
-   @Positive
-    private Integer age;
+    private LocalDate birth_date;
 }
