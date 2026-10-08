@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 @Tag(name = "Users" , description = "Gestión de usuarios")
 @RestController
-@RequestMapping("/api/v1/register")
+@RequestMapping("/api/v1/users")
 public class UserController {
 
     private final UserService service;
@@ -29,6 +29,7 @@ public class UserController {
         this.service = service;
     }
 
+    //POST
     @Operation(summary = "Registra un usuario nuevo")
     @ApiResponses({
             @ApiResponse(responseCode = "201" , description = "Usuario creado correctamente",
@@ -37,14 +38,14 @@ public class UserController {
             @ApiResponse(responseCode = "400" , description = "Datos no validos(campos faltantes" ,
             content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
     })
-    @PostMapping
+    @PostMapping("/register")
     public ResponseEntity<MessageResponseDto> createUser(
             @Valid @RequestBody UserRequestDto dto) {
         service.createUser(dto);
         MessageResponseDto response = new MessageResponseDto("Usuario registrado correctamente ");
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
-
+    //GET
     @Operation(
             summary = "Obtener todos los usuarios",
             description = "Devuelve una lista con todos los usuarios registrados en el sistema"
@@ -87,6 +88,8 @@ public class UserController {
         return ResponseEntity.ok(response);
     }
 
+
+    //PUT
     @Operation(
             summary = "Actualizar usuario completo",
             description = "Reemplaza por completo los datos de un usuario existente. Todos los campos del DTO deben enviarse."
@@ -118,6 +121,7 @@ public class UserController {
         return ResponseEntity.ok(response);
     }
 
+    //PATCH
     @Operation(
             summary = "Actualizar usuario parcialmente",
             description = "Actualiza uno o más campos de un usuario existente. Solo los campos enviados en el cuerpo serán modificados; el resto se mantiene sin cambios."

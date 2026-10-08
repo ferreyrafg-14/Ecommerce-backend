@@ -2,12 +2,18 @@ package com.federico.Ecommerce.models.Entity;
 
 import com.federico.Ecommerce.enums.Rol;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "usuario")
 public class User {
@@ -36,8 +42,8 @@ public class User {
     @Column(name = "dni" , nullable = false)
     private Integer dni;
 
-    @Column(name = "edad"  , nullable = false)
-    private Integer age;
+    @Column(name = "fecha_nacimiento")
+    private LocalDate birth_date;
 
     @CreationTimestamp
     @Column(name = "fechacreacion", nullable = false)
@@ -51,7 +57,7 @@ public class User {
 
     public User(Integer userId, String firstname, String lastname,
                 String email, String password, Rol role,
-                LocalDateTime createdAt , Integer dni , Integer age) {
+                LocalDateTime createdAt , Integer dni  , LocalDate birth_date) {
         this.userId = userId;
         this.firstname = firstname;
         this.lastname = lastname;
@@ -60,79 +66,7 @@ public class User {
         this.role = role;
         this.createdAt = createdAt;
         this.dni = dni;
-        this.age = age;
-    }
-
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
-
-    public String getFirstname() {
-        return firstname;
-    }
-
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
-    }
-
-    public String getLastname() {
-        return lastname;
-    }
-
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public Rol getRole() {
-        return role;
-    }
-
-    public void setRole(Rol role) {
-        this.role = role;
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public Integer getDni() {
-        return dni;
-    }
-
-    public void setDni(Integer dni) {
-        this.dni = dni;
-    }
-
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
+        this.birth_date = birth_date;
     }
 
     public List<Order> getOrders() {
@@ -142,6 +76,8 @@ public class User {
     public void setOrders(List<Order> orders) {
         this.orders = orders;
     }
+
+
 
     @Override
     public String  toString() {
