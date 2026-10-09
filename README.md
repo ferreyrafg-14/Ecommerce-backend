@@ -2,7 +2,7 @@
 
 Proyecto académico (Laboratorio III, Universidad del Aconcagua). API REST para un e-commerce de productos de computación, desarrollada con Java y Spring Boot sobre una base de datos PostgreSQL.
 
-> **Estado:** en desarrollo. Por ahora el proyecto cubre solo el backend; el frontend será la siguiente etapa.
+> **Estado:** en desarrollo. Por ahora el proyecto cubre solo el backend; el frontend será desarrollado más adelante.
 
 ## Tecnologías
 
