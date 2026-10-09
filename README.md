@@ -37,7 +37,7 @@ El modelo relacional tiene 8 entidades:
 
 `Categoria`, `Producto`, `Usuario`, `Carrito`, `DetalleCarrito`, `Pedido`, `DetallePedido` y `Pago`.
 
-[Opcional: agregar acá una imagen del diagrama entidad-relación, ej. `docs/der.png`]
+
 
 Se aplico bean validation en lod Dtos
 
@@ -49,5 +49,5 @@ La estructura de la base de datos se crea con una migración de Flyway (`V1__bas
 
 Los endpoints están documentados con Swagger (OpenAPI).
 
-[Opcional: agregar una captura de Swagger UI, ej. `docs/swagger.png`]
+
 
