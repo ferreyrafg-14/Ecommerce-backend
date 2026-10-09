@@ -39,7 +39,7 @@ El modelo relacional tiene 8 entidades:
 
 
 
-Se aplico bean validation en lod Dtos
+Se aplico bean validation en los Dtos
 
 ### Migraciones
 
