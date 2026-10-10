@@ -1,8 +1,5 @@
 package com.federico.Ecommerce.services;
 
-import com.federico.Ecommerce.dto.request.Cart.AddCartRequestDto;
-import com.federico.Ecommerce.dto.response.Cart.CartResponseDto;
-import com.federico.Ecommerce.exception.ResourceNotFoundException;
 import com.federico.Ecommerce.mapper.CartMapper;
 import com.federico.Ecommerce.models.Entity.Cart;
 import com.federico.Ecommerce.models.Entity.User;
@@ -26,13 +23,11 @@ public class CartService {
     }
     //POST
     @Transactional
-    public CartResponseDto createCart(AddCartRequestDto dto) {
-        User user = userRepository.findById(dto.userId())
-                .orElseThrow(() -> new ResourceNotFoundException("Usuario no encontrado"));
+    public void createCart(User user) {
         Cart cart = new Cart();
         cart.setUser(user);
-        Cart  savedCart = repository.save(cart);
-        cartItemService.createCartItem(savedCart , dto.quantity() , dto.productId());
-        return mapper.toDto(savedCart);
+        //cart.setCartId(user.getUserId());
+        repository.save(cart);
+
     }
 }
