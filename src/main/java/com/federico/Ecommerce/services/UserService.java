@@ -11,6 +11,7 @@ import com.federico.Ecommerce.repositories.UserRepository;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,18 +22,24 @@ public class UserService {
     private final UserRepository repository;
     private final UserMapper userMapper;
     private final PasswordEncoder encoder;
-    public UserService(UserRepository repository, UserMapper userMapper ,  PasswordEncoder encoder) {
+    private final CartService cartService;
+    public UserService(UserRepository repository, UserMapper userMapper ,  PasswordEncoder encoder ,  CartService cartService) {
         this.repository = repository;
         this.userMapper = userMapper;
         this.encoder = encoder;
+        this.cartService = cartService;
     }
 
     // POST
+    @Transactional
     public void createUser(UserRequestDto dto) {
         User user = userMapper.toEntity(dto);
         String encodedPassword = encoder.encode(dto.getPassword());
         user.setPassword(encodedPassword);
         repository.save(user);
+        cartService.createCart(user);
+
+
     }
 
     // PUT
