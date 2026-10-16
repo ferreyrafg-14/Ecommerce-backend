@@ -9,9 +9,11 @@ import org.mapstruct.*;
 @Mapper(componentModel = "spring")
 public interface ProductMapper {
     @Mapping(target = "category" ,  source = "categoryId" , ignore = true)
+    @Mapping(target = "brand ", source = "brand_Id" , ignore = true)
     Product toEntity(ProductRequestDto dto);
 
     @Mapping(target = "categoryId", source = "category.categoryId")
+    @Mapping(target = "brand_Id" , source = "brand.brand_Id")
     ProductResponseDto toDto(Product entity);
 
     @BeanMapping(

@@ -36,13 +36,17 @@ public class Product {
     @OneToMany(mappedBy = "product")
     private List<OrderItem> orderItems = new ArrayList<>();
 
+    @ManyToOne
+    @JoinColumn(name = "id_marca" , nullable = false)
+    private Brand brand;
+
     public Product() {
     }
 
     public Product(Integer productId, String productName,
                    String description, BigDecimal price,
                    Integer stock, String imageUrl,
-                   Category category) {
+                   Category category , Brand brand) {
         this.productId = productId;
         this.productName = productName;
         this.description = description;
@@ -50,6 +54,7 @@ public class Product {
         this.stock = stock;
         this.imageUrl = imageUrl;
         this.category = category;
+        this.brand = brand;
     }
 
     public Integer getProductId() {
@@ -106,6 +111,14 @@ public class Product {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public Brand getBrand() {
+        return brand;
+    }
+
+    public void setBrand(Brand brand) {
+        this.brand = brand;
     }
 
     @Override

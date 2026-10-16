@@ -17,5 +17,6 @@ public class ProductResponseDto {
     private Integer stock;
     private String imageUrl;
     private Integer categoryId;
+    private Integer brand_Id;
 
 }

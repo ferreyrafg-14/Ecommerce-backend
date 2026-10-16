@@ -33,6 +33,8 @@ public class ProductRequestDto {
     @NotNull(message = "La categoria es obligatoria")
     private Integer categoryId;
 
+    @NotNull
+    private Integer brand_Id;
 
 
 

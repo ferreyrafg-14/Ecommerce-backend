@@ -1,0 +1,5 @@
+ALTER TABLE PRODUCTO
+    ADD COLUMN id_marca INTEGER,
+    ADD CONSTRAINT  fk_producto_marca
+    FOREIGN KEY(id_marca)
+    REFERENCES MARCA(id_marca) ON DELETE RESTRICT;
