@@ -4,9 +4,11 @@ import com.federico.Ecommerce.dto.response.Product.ProductResponseDto;
 import com.federico.Ecommerce.dto.response.User.UserResponseDto;
 import com.federico.Ecommerce.exception.ResourceNotFoundException;
 import com.federico.Ecommerce.mapper.ProductMapper;
+import com.federico.Ecommerce.models.Entity.Brand;
 import com.federico.Ecommerce.models.Entity.Category;
 import com.federico.Ecommerce.models.Entity.Product;
 import com.federico.Ecommerce.models.Entity.User;
+import com.federico.Ecommerce.repositories.BrandRepository;
 import com.federico.Ecommerce.repositories.CategoryRepository;
 import com.federico.Ecommerce.repositories.ProductRepository;
 import org.springframework.stereotype.Service;
@@ -19,10 +21,12 @@ public class ProductService {
     private final ProductRepository repository;
     private final ProductMapper mapper;
     private final CategoryRepository categoryRepository;
-    public  ProductService(ProductRepository repository ,ProductMapper mapper ,  CategoryRepository categoryRepository ) {
+    private final BrandRepository brandRepository;
+    public  ProductService(ProductRepository repository ,ProductMapper mapper ,  CategoryRepository categoryRepository ,  BrandRepository brandRepository ) {
         this.repository = repository;
         this.mapper = mapper;
         this.categoryRepository = categoryRepository;
+        this.brandRepository = brandRepository;
 
     }
 
@@ -30,11 +34,14 @@ public class ProductService {
     public ProductResponseDto createProduct(ProductRequestDto dto ) {
         Category categoryId = categoryRepository.findById(dto.getCategoryId())
                 .orElseThrow(() -> new ResourceNotFoundException("Categoría no encontrada"));
+        Brand brandId = brandRepository.findById(dto.getBrand_Id())
+                .orElseThrow(() -> new ResourceNotFoundException("Marca no encontrada"));
 
-        Product entity = mapper.toEntity(dto);
-        entity.setCategory(categoryId);
+        Product product = mapper.toEntity(dto);
+        product.setCategory(categoryId);
+        product.setBrand(brandId);
 
-        Product saveProduct = repository.save(entity);
+        Product saveProduct = repository.save(product);
         return mapper.toDto(saveProduct);
     }
 
