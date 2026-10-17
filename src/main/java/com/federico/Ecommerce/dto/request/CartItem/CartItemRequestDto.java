@@ -1,11 +1,21 @@
 package com.federico.Ecommerce.dto.request.CartItem;
 
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-public record CartItemRequestDto(
-        @NotNull @Positive Integer quantity,
-        @NotNull Integer productId
-) {
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class CartItemRequestDto {
 
+    @NotNull
+    private Integer cartId;
+
+    @NotNull
+    private Integer productId;
+
+    @NotNull
+    private int quantity;
 }
