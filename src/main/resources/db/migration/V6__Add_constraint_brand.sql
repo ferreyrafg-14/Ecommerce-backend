@@ -1,0 +1,2 @@
+ALTER TABLE marca
+ALTER COLUMN nombre SET NOT NULL;
