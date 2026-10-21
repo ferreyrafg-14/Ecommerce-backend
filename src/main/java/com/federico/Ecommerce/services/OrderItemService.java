@@ -36,7 +36,7 @@ public class OrderItemService {
             orderItem.setProduct(cartItem.getProduct());
             orderItem.setOrder(order);
             orderItem.setOrderItemId(new OrderItemId());
-            orderItem.setProduct(cartItem.getProduct());
+            //orderItem.setProduct(cartItem.getProduct());
             orderItem.setQuantity(cartItem.getQuantity());
             orderItem.setUnitPrice(cartItem.getProduct().getPrice());
             orderItemsList.add(orderItem);
