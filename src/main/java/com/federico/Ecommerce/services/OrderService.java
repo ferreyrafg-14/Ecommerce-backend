@@ -46,20 +46,25 @@ public class OrderService {
         order.setUser(user);
         order.setTotal(BigDecimal.ZERO);
         Order saveOrder = repository.save(order);
-
         List<OrderItem> orderItemList =  orderItemService.createOrdersItems(cart.getCartItems() , saveOrder , dto.getProductId());
-
-
-        BigDecimal total = BigDecimal.ZERO;
-        for( OrderItem orderItem : orderItemList){
-            total = total.add(orderItem.getUnitPrice().multiply(BigDecimal.valueOf(orderItem.getQuantity()))) ;
-
-        }
-        saveOrder.setTotal(total);
+        //BigDecimal total = BigDecimal.ZERO;
+//        for( OrderItem orderItem : orderItemList){
+//            total = total.add(orderItem.getUnitPrice().multiply(BigDecimal.valueOf(orderItem.getQuantity()))) ;
+//
+//        }
+        saveOrder.setTotal(totalCalculated(orderItemList));
         repository.save(saveOrder);
         return mapper.toResponseDto(saveOrder);
     }
 
+    private BigDecimal totalCalculated(List<OrderItem> orderItemList){
+        BigDecimal total = BigDecimal.ZERO;
+        for(OrderItem orderItem : orderItemList){
+            total = total.add(orderItem.getUnitPrice().multiply(BigDecimal.valueOf(orderItem.getQuantity()))) ;
+
+        }
+        return total;
+    }
     /*
     //PATCH
     public OrderResponseDto updateOrder(Integer id ,  OrderRequestDto dto) {

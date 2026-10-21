@@ -2,6 +2,7 @@ package com.federico.Ecommerce.dto.request.Order;
 
 import com.federico.Ecommerce.enums.OrderStatus;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,13 +24,13 @@ public class OrderRequestDto {
     private BigDecimal total;
 
 
-    @NotBlank
+    @NotNull
     private Integer userId;
 
-    @NotBlank
+    @NotNull
     private Integer cartId;
 
-    @NotBlank
+    @NotNull
     private Integer productId;
 
 
