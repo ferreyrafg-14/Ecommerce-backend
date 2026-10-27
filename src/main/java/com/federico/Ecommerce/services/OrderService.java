@@ -59,9 +59,8 @@ public class OrderService {
 
     private BigDecimal totalCalculated(List<OrderItem> orderItemList){
         BigDecimal total = BigDecimal.ZERO;
-        for(OrderItem orderItem : orderItemList){
+       for(OrderItem orderItem : orderItemList){
             total = total.add(orderItem.getUnitPrice().multiply(BigDecimal.valueOf(orderItem.getQuantity()))) ;
-
         }
         return total;
     }
