@@ -10,6 +10,7 @@ import com.federico.Ecommerce.models.embeddable.OrderItemId;
 import com.federico.Ecommerce.repositories.OrderItemRepository;
 import com.federico.Ecommerce.repositories.ProductRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +26,7 @@ public class OrderItemService {
 
     }
 
+    @Transactional
     public  List<OrderItem> createOrdersItems(List<CartItem> cartItems , Order order  , Integer productId) {
         List<OrderItem> orderItemsList = new ArrayList<>();
 

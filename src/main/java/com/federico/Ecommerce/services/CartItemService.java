@@ -53,7 +53,7 @@ public class CartItemService {
         return cartItemMapper.toDto(cartItem);
     }
 
-
+    @Transactional
     public CartItemResponseDto updateCartItem(CartItemRequestDto dto ) {
         CartItemId id = new CartItemId(dto.getCartId() , dto.getProductId());
         Optional<CartItem> item = cartItemRepository.findById(id);

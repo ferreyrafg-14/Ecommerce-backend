@@ -11,6 +11,7 @@ import com.federico.Ecommerce.repositories.CartRepository;
 import com.federico.Ecommerce.repositories.OrderRepository;
 import com.federico.Ecommerce.repositories.UserRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -32,6 +33,7 @@ public class OrderService {
     }
 
     //POST
+    @Transactional
     public OrderResponseDto createOrder(OrderRequestDto dto ) {
         User user = userRepository.findById(dto.getUserId())
                 .orElseThrow(() -> new ResourceNotFoundException("Usuario no encontrado"));
