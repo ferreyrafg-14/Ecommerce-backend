@@ -13,6 +13,9 @@ import com.federico.Ecommerce.repositories.CartItemRepository;
 import com.federico.Ecommerce.repositories.CartRepository;
 import com.federico.Ecommerce.repositories.ProductRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Optional;
 
 @Service
 public class CartItemService {
@@ -28,7 +31,9 @@ public class CartItemService {
 
     }
 
+    @Transactional
     public CartItemResponseDto createCartItem(CartItemRequestDto dto) {
+
         Product product = productRepository.findById(dto.getProductId()).orElseThrow(() -> new ResourceNotFoundException("Producto no encontrado"));
 
         Cart cart = cartRepository.findById(dto.getCartId())
@@ -43,9 +48,22 @@ public class CartItemService {
         cartItem.setProduct(product);
         cartItem.setCartItemId(new CartItemId());
         cartItem.setQuantity(dto.getQuantity());
-        product.setStock(product.getStock() - dto.getQuantity());
+        //product.setStock(product.getStock() - dto.getQuantity());
         cartItemRepository.save(cartItem);
         return cartItemMapper.toDto(cartItem);
+    }
+
+
+    public CartItemResponseDto updateCartItem(CartItemRequestDto dto ) {
+        CartItemId id = new CartItemId(dto.getCartId() , dto.getProductId());
+        Optional<CartItem> item = cartItemRepository.findById(id);
+
+        if (!item.isPresent()) {
+            throw new ResourceNotFoundException("CartItem no encontrado");
+        }
+        CartItem cartitem = item.get();
+        cartitem.setQuantity(cartitem.getQuantity() + dto.getQuantity());
+        return cartItemMapper.toDto(cartItemRepository.save(cartitem));
     }
 
 
